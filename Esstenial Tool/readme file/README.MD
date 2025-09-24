@@ -7,8 +7,8 @@
 
 ### 2nd way : 
 - First install surge, if you haven’t already : ` npm install --global surge  `
-- Run `npm run build`.
-- Deploy to surge by typing `surge dist`.
+- Run ` npm run build`.
+- Deploy to surge by typing ` surge dist `.
 - You can also deploy to a custom domain by adding surge dist yourdomain.com.
 - custom domain create process : 
     - create a folder in public folder and name it : `CNAME` , put the url : ` sihambintahabib-assairment.surge.sh ` 

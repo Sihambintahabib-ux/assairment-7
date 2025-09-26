@@ -1,19 +1,43 @@
 import './App.css'
+import Nav from './components/Nav/Nav'
+import Card from './components/Card/Card'
+import CustomerTicket from './components/CustomerTicket/CustomerTicket'
+import Footer from './components/Footer/Footer'
+
+
 import { ToastContainer, toast } from 'react-toastify';
+import { Suspense } from 'react'
+
+
+
+
+
+var TicketJson = async () => {
+
+  var res = await fetch('/Tickets.json')
+  return res.json()
+}
+
+
+
+
 function App() {
   toast('hi')
+  var ticketpromise = TicketJson()
   return (
     <>
-      <h1>Hi React....with fun </h1>
-<nav>navication</nav>
-<main>
-  <section> display</section>
-  <section> card </section>
-  
-  </main>
-<footer>footer</footer>
+      <Nav></Nav>
+      
+      <Card></Card>
+      <Suspense fallback={<span className="loading loading-spinner loading-xl"></span>
+}>
+        <CustomerTicket ticketpromise={ticketpromise}></CustomerTicket>
 
-<ToastContainer></ToastContainer>
+      </Suspense>
+      {/* <Footer></Footer> */}
+
+
+      {/* <ToastContainer></ToastContainer> */}
     </>
   )
 }

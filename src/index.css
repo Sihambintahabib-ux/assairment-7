@@ -1,2 +1,7 @@
 @import "tailwindcss";
 /* @plugin "daisyui"; */
+.bg{
+
+    @apply  bg-gray-200
+    
+}

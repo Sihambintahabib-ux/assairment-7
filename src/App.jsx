@@ -1,7 +1,7 @@
 import './App.css'
 import Nav from './components/Nav/Nav'
-import Card from './components/Card/Card'
-import CustomerTicket from './components/CustomerTicket/CustomerTicket'
+import Card from './components/CardCustomerTicket/Card.jsx/Card'
+import CustomerTicket from './components/CardCustomerTicket/CardCustomerTicket'
 import Footer from './components/Footer/Footer'
 
 
@@ -9,12 +9,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Suspense } from 'react'
 
 
+const ticketJson = async () => {
 
-
-
-var TicketJson = async () => {
-
-  var res = await fetch('/Tickets.json')
+  const res = await fetch('/tickets.json')
   return res.json()
 }
 
@@ -23,19 +20,17 @@ var TicketJson = async () => {
 
 function App() {
   toast('hi')
-  var ticketpromise = TicketJson()
+  const ticketpromise = ticketJson()
   return (
-    <>
+    < >
       <Nav></Nav>
-      
-      <Card></Card>
-      <Suspense fallback={<span className="loading loading-spinner loading-xl"></span>
-}>
+      <div className='bg'>
+      <Card ></Card>
+      <Suspense fallback={<span className="loading loading-spinner loading-xl"></span>}>
         <CustomerTicket ticketpromise={ticketpromise}></CustomerTicket>
-
       </Suspense>
-      {/* <Footer></Footer> */}
-
+      <Footer></Footer>
+      </div>
 
       {/* <ToastContainer></ToastContainer> */}
     </>

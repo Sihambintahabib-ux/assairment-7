@@ -1,0 +1,37 @@
+import React from 'react';
+
+const Card = ({ cardData }) => {
+    console.log(cardData, ' hi filter');
+
+
+    // ======
+ 
+    // ======
+
+
+    var open = cardData?.filter((element) => element.status == "Open");
+    var inProgress = cardData?.filter((element) => element.status == "In-Progress");
+    console.log({inProgress, open});
+
+    // let inProgresslength = inProgress.length;
+    return (
+
+        <div className="  ">
+            <div className="container m-auto text-white | flex justify-center items-center | text-center">
+
+                <div className={` flex-1 p-28 m-8 rounded-2xl | bg-linear-to-t from-purple-500 via-purple-700 to-purple-700 `}>
+                    <h2 className='text-4xl font-bold mb-2'>In progess</h2>
+                    <p className='text-2xl font-bold mb-2'>  </p>
+                </div>
+                <div className="flex-1 rounded-2xl bg-linear-to-r from-green-400 to-emerald-600  p-28 m-10 ">
+                    <h2 className='text-4xl font-bold mb-2'>Resolve</h2>
+                    <span className='text-2xl font-bold mb-2'>  </span>
+                    <p className="font-semibold text-[26px]"></p>
+                </div>
+            </div>
+
+        </div>
+    );
+};
+
+export default Card;

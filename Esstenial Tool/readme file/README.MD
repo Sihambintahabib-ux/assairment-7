@@ -61,3 +61,12 @@ Visit the website for more information :
 ` https://www.npmjs.com/package/react-toastify/v/11.0.0-0 `
 
 
+
+
+---
+problem : 
+1. daisy ui 
+2.how to learn react 
+3. props
+4. use 
+5. usestate

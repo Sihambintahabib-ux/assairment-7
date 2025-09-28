@@ -1,27 +1,61 @@
 import React, { use, useState } from 'react';
 import Card from './Card.jsx/Card';
+// import { toast } from 'react-toastify';
+
 const CustomerTicket = ({ ticketpromise }) => {
     var usedatas = use(ticketpromise)
-
     // console.log(usedatas);
     const [datas, setusedata] = useState(usedatas)
-    
     console.log(datas);
 
-    let ticketclick= ()=>{
-        console.log("heloo ticketclick");
+    let ticketclick = (data) => {
+        const currentData = datas.find((elem) => elem.id == data.id);
+        // console.log(currentData);
+        if (currentData.status == "In-Progress") {
+            currentData.status = "Open";
+        } else if (currentData.status == "Open") {
+            currentData.status = "In-Progress";
+        }
+        const restData = datas.filter((elem) => elem.id != data.id);
+        // console.log(restData);
+        // let Completedata = (data) => {
+        //     setusedata([currentData, ...restData])
+        // }
     }
+
     return (
+
         <div className=' '>
             <div className='flex justify-between gap-5 | container mx-auto  '>
                 <div className="container w-3/3 m-auto grid grid-cols-2 gap-10 ">
+
                     {
                         datas?.map(data => {
-                            console.log(data);
-                            
-                            return <div  key={data.id} onClick={ticketclick} >
-                                
-                                <div className='container m-auto p-5 |  | border-2 border-transparent shadow-2xl rounded-2xl  h-full '>
+                            // console.log(data);
+
+                            return <div key={data.id}  >
+                                <div onClick={() => {
+                                    ticketclick(data)
+                                    // const currentData = datas.find((elem) => elem.id == data.id);
+                                    // console.log(currentData);
+                                    // if (currentData.status == "In-Progress") {
+                                    //     currentData.status = "Open";
+                                    // } else if (currentData.status == "Open") {
+                                    //     currentData.status = "In-Progress";
+                                    // }
+                                    // const restData = datas.filter((elem) => elem.id != data.id);
+                                    // console.log(restData);
+
+
+                                    // setusedata([currentData, ...restData])
+
+
+
+
+
+                                }
+
+                                } className='container m-auto p-5 |  | border-2 border-transparent shadow-2xl rounded-2xl  h-full '>
                                     <div className='flex gap-2 justify-between '>
                                         <div className='font-bold'> {data.title}</div>
                                         <div className={` p-1 rounded-md ${data.status == "Open" ? 'bg-green-300' : data.status == "In-Progress" ?
@@ -63,15 +97,28 @@ const CustomerTicket = ({ ticketpromise }) => {
                         )
 
                     }
-                    <Card cardData={datas}></Card>
+
+                    {/* <div className=' hidden '>
+                        { 
+                        datas && 
+                            <Card cardData={datas}></Card>
+                            
+                            }
+                    </div> */}
+
+
+
 
                 </div>
-                {/* <div className=' w-1/3 '>
+
+
+                <div className=' w-1/3 '>
                     <div className='sticky top-0   '>
-                        <p className='mb-2 '>Lorem ipsum dolor sit amet.</p>
+                        <p className='mb-2 '>Lorem ipsum dolor sit amet. </p>
                         <button className='w-full bg-green-600 p-2 px-5 rounded-sm  text-white'>Complete</button>
                     </div>
-                </div> */}
+                </div>
+
             </div>
         </div>
     );

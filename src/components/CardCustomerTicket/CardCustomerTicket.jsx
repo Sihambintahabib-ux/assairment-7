@@ -1,14 +1,15 @@
 import React, { use, useState } from 'react';
 import Card from './Card.jsx/Card';
-// import { toast } from 'react-toastify';
+//  import { toast } from 'react-toastify';
 
 const CustomerTicket = ({ ticketpromise }) => {
     var usedatas = use(ticketpromise)
-    // console.log(usedatas);
+    console.log(usedatas);
     const [datas, setusedata] = useState(usedatas)
     console.log(datas);
 
     let ticketclick = (data) => {
+        console.log('object');
         const currentData = datas.find((elem) => elem.id == data.id);
         // console.log(currentData);
         if (currentData.status == "In-Progress") {
@@ -33,9 +34,11 @@ const CustomerTicket = ({ ticketpromise }) => {
                         datas?.map(data => {
                             // console.log(data);
 
-                            return <div key={data.id}  >
-                                <div onClick={() => {
-                                    ticketclick(data)
+                            // return (
+                              <div className=" bg-yellow-500"  key={data.id}>
+                                <div
+                                  onClick={() => {
+                                    ticketclick(data);
                                     // const currentData = datas.find((elem) => elem.id == data.id);
                                     // console.log(currentData);
                                     // if (currentData.status == "In-Progress") {
@@ -46,50 +49,60 @@ const CustomerTicket = ({ ticketpromise }) => {
                                     // const restData = datas.filter((elem) => elem.id != data.id);
                                     // console.log(restData);
 
-
                                     // setusedata([currentData, ...restData])
-
-
-
-
-
-                                }
-
-                                } className='container m-auto p-5 |  | border-2 border-transparent shadow-2xl rounded-2xl  h-full '>
-                                    <div className='flex gap-2 justify-between '>
-                                        <div className='font-bold'> {data.title}</div>
-                                        <div className={` p-1 rounded-md ${data.status == "Open" ? 'bg-green-300' : data.status == "In-Progress" ?
-                                            'bg-yellow-200' : 'bg-blue-900'}`}>{data.status} </div>
+                                  }}
+                                  className="container m-auto p-5 |  | border-2 border-transparent shadow-2xl rounded-2xl  h-full "
+                                >
+                                  <div className="flex gap-2 justify-between ">
+                                    <div className="font-bold">
+                                      {" "}
+                                      {data.title}
                                     </div>
-                                    <div className='my-5'>{data.description} </div>
-                                    <div className='flex justify-between items-end   '>
-                                        <div className='flex justify-between  items-end gap-2' >
-                                            <div className='font-bold ' > {data.id} </div>
-                                            <div
-
-                                                className={` 
-                                                p-1.5 rounded-md ${data.priority == "High" ? 'bg-red-300'
-                                                        : data.priority == "Low" ?
-                                                            'bg-green-300'
-
-                                                            : 'bg-yellow-200'}`}
-
-
-
-                                            >{data.priority} Priority </div>
-
-                                        </div>
-                                        <div className='flex justify-between  gap-2'>
-                                            <div className='font-bold '> {data.customer} </div>
-                                            <div> {data.createdAt}</div>
-
-                                        </div>
-
+                                    <div
+                                      className={` p-1 rounded-md ${
+                                        data.status == "Open"
+                                          ? "bg-green-300"
+                                          : data.status == "In-Progress"
+                                          ? "bg-yellow-200"
+                                          : "bg-blue-900"
+                                      }`}
+                                    >
+                                      {data.status}{" "}
                                     </div>
-
-
+                                  </div>
+                                  <div className="my-5">
+                                     {data.description}{" "}
+                                  </div>
+                                  <div className="flex justify-between items-end   ">
+                                    <div className="flex justify-between  items-end gap-2">
+                                      <div className="font-bold ">
+                                        {" "}
+                                        {data.id}{" "}
+                                      </div>
+                                      <div
+                                        className={` 
+                                                p-1.5 rounded-md ${
+                                                  data.priority == "High"
+                                                    ? "bg-red-300"
+                                                    : data.priority == "Low"
+                                                    ? "bg-green-300"
+                                                    : "bg-yellow-200"
+                                                }`}
+                                      >
+                                        {data.priority} Priority{" "}
+                                      </div>
+                                    </div>
+                                    <div className="flex justify-between  gap-2">
+                                      <div className="font-bold ">
+                                        {" "}
+                                        {data.customer}{" "}
+                                      </div>
+                                      <div> {data.createdAt}</div>
+                                    </div>
+                                  </div>
                                 </div>
-                            </div>
+                              </div>
+                            // );
 
                         }
 
@@ -114,6 +127,18 @@ const CustomerTicket = ({ ticketpromise }) => {
 
                 <div className=' w-1/3 '>
                     <div className='sticky top-0   '>
+                        { 
+                            ticketclick ? <p>
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis aspernatur unde recusandae. Iure doloribus aspernatur accusamus, eos odit cumque sapiente aut commodi, eum ullam exercitationem architecto magni officia sit tenetur?
+                            </p> : <p>              fdkfkdfksdfkd                             </p>
+
+                        }
+                        { 
+                            ticketclick && <p className='bg-red-700'>
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis aspernatur unde recusandae. Iure doloribus aspernatur accusamus, eos odit cumque sapiente aut commodi, eum ullam exercitationem architecto magni officia sit tenetur?
+                            </p> 
+
+                        }
                         <p className='mb-2 '>Lorem ipsum dolor sit amet. </p>
                         <button className='w-full bg-green-600 p-2 px-5 rounded-sm  text-white'>Complete</button>
                     </div>

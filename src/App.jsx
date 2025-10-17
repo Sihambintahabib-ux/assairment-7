@@ -6,7 +6,7 @@ import Nav from './components/Nav/Nav';
 import { ToastContainer } from 'react-toastify';
 import { Suspense } from 'react'
 
-
+console.log('object');
 
 
 const ticketJson = async () => {

@@ -19,14 +19,29 @@ const Card = ({ ticketpromise, data, issue, issueresolve }) => {
     <div className="  ">
       <div className="container m-auto text-white | flex justify-center items-center md:flex-row flex-col  | text-center">
         <div
-          className={` flex-1 p-28 m-8 rounded-2xl | bg-linear-to-t from-purple-500 via-purple-700 to-purple-700   bg-[url('/vector2')] `}
+          className={` flex-1 p-28 m-8 rounded-2xl |  `}
+          style={{
+            background:
+              " url('/vector1.png'), url('/vector2.png'), linear-gradient(#7003ff50, #a260f780) , no-repeat ",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            height: "10%",
+            width: "10%",
+          }}
         >
+          {/* <img src="/public/vector1.png" alt="" /> */}
+          {/* bg-linear-to-t from-purple-500 via-purple-700 to-purple-700 */}
+          {/* bg-[url('/vector2')] */}
+
           <h2 className="text-4xl font-bold mb-2">In progess</h2>
+
           <p className="text-2xl font-bold mb-2">
             {" "}
             {/* {inProgresslength}  */}
             {issue.length}
           </p>
+          {/* <img src="/public/vector2.png" alt="" /> */}
         </div>
         <div className="flex-1 rounded-2xl bg-linear-to-r from-green-400 to-emerald-600  p-28 m-10 ">
           <h2 className="text-4xl font-bold mb-2">Resolve</h2>

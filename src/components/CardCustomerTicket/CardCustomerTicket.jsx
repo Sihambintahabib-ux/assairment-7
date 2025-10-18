@@ -1,152 +1,109 @@
-import React, { use, useState } from 'react';
-import Card from './Card.jsx/Card';
-//  import { toast } from 'react-toastify';
+import { use, useState } from "react";
+import Tickets from "../Ticket/Ticket";
+import Card from "./Card.jsx/Card";
+import Complete from "../Complete/Complete";
+import Incomplete from "../Incomplete/Incomplete";
 
 const CustomerTicket = ({ ticketpromise }) => {
-    var usedatas = use(ticketpromise)
-    console.log(usedatas);
-    const [datas, setusedata] = useState(usedatas)
-    console.log(datas);
+  var usedatas = use(ticketpromise);
+  // console.log(usedatas);
+  const [datas, setusedata] = useState(usedatas);
+  // complete btn action
+  const [issue, setissue] = useState([]);
+  const [issueresolve, setissueresolve] = useState([]);
 
-    let ticketclick = (data) => {
-        console.log('object');
-        const currentData = datas.find((elem) => elem.id == data.id);
-        // console.log(currentData);
-        if (currentData.status == "In-Progress") {
-            currentData.status = "Open";
-        } else if (currentData.status == "Open") {
-            currentData.status = "In-Progress";
-        }
-        const restData = datas.filter((elem) => elem.id != data.id);
-        // console.log(restData);
-        // let Completedata = (data) => {
-        //     setusedata([currentData, ...restData])
-        // }
+  // console.log(datas);
+
+  let ticketclick = (data) => {
+    // console.log(data);
+    //  find the similar data
+    // const currentData = datas.find((elem) => elem.id == data.id);
+    const currentData = issue.find((elem) => elem.id == data.id);
+    console.log(currentData);
+
+    if (currentData) {
+      alert("data is included");
+      return;
     }
 
-    return (
+    // if (currentData.status == "In-Progress") {
+    //   currentData.status = "Open";
+    // } else if (currentData.status == "Open") {
+    //   currentData.status = "In-Progress";
+    // }
+    // delete the dublicate data
+    const restData = datas.filter((elem) => elem.id != data.id);
+    console.log(restData);
 
-        <div className=' '>
-            <div className='flex justify-between gap-5 | container mx-auto  '>
-                <div className="container w-3/3 m-auto grid grid-cols-2 gap-10 ">
+    // push data using spread operator
+    var newissue = [...issue, data];
+    setissue(newissue);
+  };
+  // console.log(issue);
 
-                    {
-                        datas?.map(data => {
-                            // console.log(data);
+  let handleissueresolve = (data) => {
+console.log(data);
+const newissueresolve = [...issueresolve, data];
+setissueresolve(newissueresolve);
 
-                            // return (
-                              <div className=" bg-yellow-500"  key={data.id}>
-                                <div
-                                  onClick={() => {
-                                    ticketclick(data);
-                                    // const currentData = datas.find((elem) => elem.id == data.id);
-                                    // console.log(currentData);
-                                    // if (currentData.status == "In-Progress") {
-                                    //     currentData.status = "Open";
-                                    // } else if (currentData.status == "Open") {
-                                    //     currentData.status = "In-Progress";
-                                    // }
-                                    // const restData = datas.filter((elem) => elem.id != data.id);
-                                    // console.log(restData);
+    const remaining = issue.filter((elem) => elem.id !== data.id);
+setissue(remaining);
 
-                                    // setusedata([currentData, ...restData])
-                                  }}
-                                  className="container m-auto p-5 |  | border-2 border-transparent shadow-2xl rounded-2xl  h-full "
-                                >
-                                  <div className="flex gap-2 justify-between ">
-                                    <div className="font-bold">
-                                      {" "}
-                                      {data.title}
-                                    </div>
-                                    <div
-                                      className={` p-1 rounded-md ${
-                                        data.status == "Open"
-                                          ? "bg-green-300"
-                                          : data.status == "In-Progress"
-                                          ? "bg-yellow-200"
-                                          : "bg-blue-900"
-                                      }`}
-                                    >
-                                      {data.status}{" "}
-                                    </div>
-                                  </div>
-                                  <div className="my-5">
-                                     {data.description}{" "}
-                                  </div>
-                                  <div className="flex justify-between items-end   ">
-                                    <div className="flex justify-between  items-end gap-2">
-                                      <div className="font-bold ">
-                                        {" "}
-                                        {data.id}{" "}
-                                      </div>
-                                      <div
-                                        className={` 
-                                                p-1.5 rounded-md ${
-                                                  data.priority == "High"
-                                                    ? "bg-red-300"
-                                                    : data.priority == "Low"
-                                                    ? "bg-green-300"
-                                                    : "bg-yellow-200"
-                                                }`}
-                                      >
-                                        {data.priority} Priority{" "}
-                                      </div>
-                                    </div>
-                                    <div className="flex justify-between  gap-2">
-                                      <div className="font-bold ">
-                                        {" "}
-                                        {data.customer}{" "}
-                                      </div>
-                                      <div> {data.createdAt}</div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            // );
+  };
+  return (
+    <div className=" ">
+      <Card ticketpromise={ticketpromise} data={datas}></Card>
 
-                        }
+      <div className="flex justify-between gap-5 | container mx-auto  ">
+        <div className="container w-3/3 m-auto grid grid-cols-2 gap-10 ">
+          {datas?.map((data) => (
+            <Tickets
+              data={data}
+              ticketclick={ticketclick}
+              key={data.id}
+            ></Tickets>
+          ))}
 
-                            // key = { id }
-                        )
-
-                    }
-
-                    {/* <div className=' hidden '>
+          {/* <div className=' hidden '>
                         { 
                         datas && 
                             <Card cardData={datas}></Card>
                             
                             }
                     </div> */}
-
-
-
-
-                </div>
-
-
-                <div className=' w-1/3 '>
-                    <div className='sticky top-0   '>
-                        { 
-                            ticketclick ? <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis aspernatur unde recusandae. Iure doloribus aspernatur accusamus, eos odit cumque sapiente aut commodi, eum ullam exercitationem architecto magni officia sit tenetur?
-                            </p> : <p>              fdkfkdfksdfkd                             </p>
-
-                        }
-                        { 
-                            ticketclick && <p className='bg-red-700'>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis aspernatur unde recusandae. Iure doloribus aspernatur accusamus, eos odit cumque sapiente aut commodi, eum ullam exercitationem architecto magni officia sit tenetur?
-                            </p> 
-
-                        }
-                        <p className='mb-2 '>Lorem ipsum dolor sit amet. </p>
-                        <button className='w-full bg-green-600 p-2 px-5 rounded-sm  text-white'>Complete</button>
-                    </div>
-                </div>
-
-            </div>
         </div>
-    );
+        {/* ticket issue complete button  */}
+
+        <div className=" w-1/3 space-y-9 ">
+          <div className="  space-y-5 p-3 shadow-2xl ">
+            <div className="mb-2 ">
+              {issue.map((data) => (
+                <Complete
+                  key={data.id}
+                  data={data}
+                  handleissueresolve={handleissueresolve}
+                ></Complete>
+              ))}
+            </div>{" "}
+            <button className="w-full bg-green-600 p-2 px-5 rounded-sm  text-white">
+              Complete
+            </button>
+          </div>
+          <div className="sticky top-0  space-y-5 p-3 shadow-2xl ">
+            <div className="mb-2 ">
+              {issue.map((data) => (
+                <Incomplete key={data.id} data={data}></Incomplete>
+              ))}
+            </div>
+            <button className="w-full bg-green-600 p-2 px-5 rounded-sm  text-white">
+              inComplete
+            </button>
+          </div>
+        </div>
+        {/* ======== */}
+      </div>
+    </div>
+  );
 };
 
 export default CustomerTicket;

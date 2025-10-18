@@ -6,7 +6,7 @@ import Nav from './components/Nav/Nav';
 import { ToastContainer } from 'react-toastify';
 import { Suspense } from 'react'
 
-console.log('object');
+// console.log('object');
 
 
 const ticketJson = async () => {
@@ -23,7 +23,7 @@ function App() {
       <div className='bg'>
         <Suspense fallback={<span className="loading loading-spinner loading-xl"></span>}>
 
-          <Card ticketpromise={ticketpromise} ></Card>
+          {/* <Card ticketpromise={ticketpromise} ></Card> */}
         </Suspense>
 
         <Suspense fallback={<span className="loading loading-spinner loading-xl"></span>}>

@@ -1,16 +1,19 @@
 import { use } from "react";
 
-const Card = ({  ticketpromise  }) => {
-    const cardData = use(ticketpromise)
+const Card = ({  ticketpromise , data }) => {
+    // const cardData = use(ticketpromise)
+// const cardData = data
     // console.log(cardData, ' hi filter');
 
-    var open = cardData?.filter((element) => element.status == "Open");
-    var inProgress = cardData?.filter((element) => element.status == "In-Progress");
-    console.log({ inProgress, open, });
+    // var open = cardData?.filter((element) => element.status == "Open");
+    var open = data?.filter((element) => element.status == "Open");
+    var inProgress = data?.filter((element) => element.status == "In-Progress");
+    // var inProgress = cardData?.filter((element) => element.status == "In-Progress");
+    // console.log({ inProgress, open, });
 
     let inProgresslength = inProgress.length;
     let openlength = open.length;
-    console.log(inProgresslength, openlength);
+    // console.log(inProgresslength, openlength);
     return (
 
         <div className="  ">
@@ -32,3 +35,7 @@ const Card = ({  ticketpromise  }) => {
 };
 
 export default Card;
+
+
+
+

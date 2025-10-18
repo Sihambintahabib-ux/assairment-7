@@ -29,6 +29,6 @@ surge live link : http://sihambintahabib-assairment.surge.sh/
 
 
 
-app> ordercontainer > ordercard
+app> ordercontainer > ordercard cookingitems readyitems , handlecooking  remaining
 
-app > cardcustomerticket + card 
+app > cardcustomerticket + card   issue issueresolve handleissueresolve remaining

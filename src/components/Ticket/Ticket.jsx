@@ -11,7 +11,7 @@ const Tickets = ({ data, ticketclick }) => {
 
   return (
     <div
-      className=" bg-yellow-500"
+      className=" "
       key={data.id}
        onClick={() => {
                   ticketclick(data);  }}

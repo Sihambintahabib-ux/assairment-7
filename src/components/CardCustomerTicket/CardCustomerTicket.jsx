@@ -3,11 +3,12 @@ import Tickets from "../Ticket/Ticket";
 import Card from "./Card.jsx/Card";
 import Complete from "../Complete/Complete";
 import Incomplete from "../Incomplete/Incomplete";
+import { toast } from "react-toastify";
 
 const CustomerTicket = ({ ticketpromise }) => {
   var usedatas = use(ticketpromise);
   // console.log(usedatas);
-  const [datas, setusedata] = useState(usedatas);
+  const [datas, setdatas] = useState(usedatas);
   // complete btn action
   const [issue, setissue] = useState([]);
   const [issueresolve, setissueresolve] = useState([]);
@@ -15,6 +16,7 @@ const CustomerTicket = ({ ticketpromise }) => {
   // console.log(datas);
 
   let ticketclick = (data) => {
+    toast("In progess");
     // console.log(data);
     //  find the similar data
     // const currentData = datas.find((elem) => elem.id == data.id);
@@ -22,7 +24,9 @@ const CustomerTicket = ({ ticketpromise }) => {
     console.log(currentData);
 
     if (currentData) {
-      alert("data is included");
+      // alert("data is included");
+          toast.error("data is included");
+
       return;
     }
 
@@ -43,19 +47,29 @@ const CustomerTicket = ({ ticketpromise }) => {
 
   let handleissueresolve = (data) => {
 console.log(data);
+          toast.success("Resolve Issue");
+
 const newissueresolve = [...issueresolve, data];
 setissueresolve(newissueresolve);
 
     const remaining = issue.filter((elem) => elem.id !== data.id);
 setissue(remaining);
+    const remainingdata = datas.filter((elem) => elem.id !== data.id);
+setdatas(remainingdata);
+
 
   };
   return (
     <div className=" ">
-      <Card ticketpromise={ticketpromise} data={datas}></Card>
+      <Card
+        ticketpromise={ticketpromise}
+        data={datas}
+        issue={issue}
+        issueresolve={issueresolve}
+      ></Card>
 
-      <div className="flex justify-between gap-5 | container mx-auto  ">
-        <div className="container w-3/3 m-auto grid grid-cols-2 gap-10 ">
+      <div className="flex flex-col-reverse md:flex-row justify-between gap-5 | container mx-auto  ">
+        <div className="container w-3/3 m-auto grid grid-cols-1 md:grid-cols-2 gap-10 ">
           {datas?.map((data) => (
             <Tickets
               data={data}
@@ -74,8 +88,10 @@ setissue(remaining);
         </div>
         {/* ticket issue complete button  */}
 
-        <div className=" w-1/3 space-y-9 ">
-          <div className="  space-y-5 p-3 shadow-2xl ">
+        <div className=" w-full md:w-1/3  | space-y-9 flex  flex-col ">
+          {/* In-progress Issue */}
+          <div className="  space-y-5 p-5 shadow-2xl ">
+            <h1 className="font-bold text-2xl ">In-progress Issue</h1>
             <div className="mb-2 ">
               {issue.map((data) => (
                 <Complete
@@ -85,19 +101,22 @@ setissue(remaining);
                 ></Complete>
               ))}
             </div>{" "}
-            <button className="w-full bg-green-600 p-2 px-5 rounded-sm  text-white">
+            {/* <button className="w-full bg-green-600 p-2 px-5 rounded-sm  text-white">
               Complete
-            </button>
+            </button> */}
           </div>
-          <div className="sticky top-0  space-y-5 p-3 shadow-2xl ">
+          {/* sticky top-0 */}
+          {/* Rwsolve Issue */}
+          <div className=" space-y-5 p-5 shadow-2xl ">
+            <h1 className="font-bold text-2xl ">Rwsolve Issue</h1>
             <div className="mb-2 ">
-              {issue.map((data) => (
+              {issueresolve.map((data) => (
                 <Incomplete key={data.id} data={data}></Incomplete>
               ))}
             </div>
-            <button className="w-full bg-green-600 p-2 px-5 rounded-sm  text-white">
+            {/* <button className="w-full bg-green-600 p-2 px-5 rounded-sm  text-white">
               inComplete
-            </button>
+            </button> */}
           </div>
         </div>
         {/* ======== */}

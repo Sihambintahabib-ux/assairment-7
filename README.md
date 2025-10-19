@@ -57,18 +57,21 @@ private live link :
 <br>
 ph-git link : https://github.com/programming-hero-web-course-4/b12a7-customer-support-zone-Sihambintahabib-ux.git
 <br>
-surge live link : http://sihambintahabib-assairment.surge.sh/
+surge live link : https://sihambintahabib-assairment7.surge.sh/
 <br>
 
 CODE : 
-
 ```
+ph-git link : https://github.com/programming-hero-web-course-4/b12a7-customer-support-zone-Sihambintahabib-ux.git
+
+surge live link : https://sihambintahabib-assairment7.surge.sh/
 
 [
 Code for counting ass7 on 50 marks:AsS7&Marks_50*12/10D
 ]
 
 ```
+
 
 
 <!-- app> ordercontainer > ordercard cookingitems readyitems , handlecooking  remaining

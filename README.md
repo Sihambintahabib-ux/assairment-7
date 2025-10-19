@@ -60,9 +60,15 @@ ph-git link : https://github.com/programming-hero-web-course-4/b12a7-customer-su
 surge live link : http://sihambintahabib-assairment.surge.sh/
 <br>
 
+CODE : 
 
+```
 
+[
+Code for counting ass7 on 50 marks:AsS7&Marks_50*12/10D
+]
 
+```
 
 
 <!-- app> ordercontainer > ordercard cookingitems readyitems , handlecooking  remaining

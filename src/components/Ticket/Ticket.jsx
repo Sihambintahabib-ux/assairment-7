@@ -32,7 +32,7 @@ const Tickets = ({ data, ticketclick }) => {
           </div>
         </div>
         <div className="my-5">{data.description} </div>
-        <div className="flex justify-between items-end   ">
+        <div className="flex justify-between md:items-end   flex-col md:flex-row ">
           <div className="flex justify-between  items-end gap-2">
             <div className="font-bold "> {data.id} </div>
             <div

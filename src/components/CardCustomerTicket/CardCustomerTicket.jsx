@@ -106,9 +106,9 @@ setdatas(remainingdata);
             </button> */}
           </div>
           {/* sticky top-0 */}
-          {/* Rwsolve Issue */}
+          {/* Resolve Issue */}
           <div className=" space-y-5 p-5 shadow-2xl ">
-            <h1 className="font-bold text-2xl ">Rwsolve Issue</h1>
+            <h1 className="font-bold text-2xl ">Resolve Issue</h1>
             <div className="mb-2 ">
               {issueresolve.map((data) => (
                 <Incomplete key={data.id} data={data}></Incomplete>

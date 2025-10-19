@@ -17,10 +17,6 @@ Example:
 const [count, setCount] = useState(0);
 ```
 
-
-
-
-
 --- 
 ### How can you share state between components in React?
 Sharing state between components in React can be done in several ways:
